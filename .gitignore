@@ -1,0 +1,8 @@
+# idea
+.idea
+
+# environment
+.env
+
+# modules
+node_modules

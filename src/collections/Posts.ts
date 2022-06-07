@@ -25,6 +25,11 @@ const Posts: CollectionConfig = {
       type: 'date',
     },
     {
+      name: 'author',
+      type: 'relationship',
+      relationTo: 'authors'
+    },
+    {
       name: 'category',
       type: 'relationship',
       relationTo: 'categories'

@@ -4,6 +4,7 @@ import Categories from './collections/Categories';
 import Posts from './collections/Posts';
 import Users from './collections/Users';
 import Media from './collections/Media';
+import Authors from "./collections/Authors";
 
 export default buildConfig({
   serverURL: 'http://localhost:3000',
@@ -11,10 +12,11 @@ export default buildConfig({
     user: Users.slug,
   },
   collections: [
-    Categories,
     Posts,
     Users,
     Media,
+    Authors,
+    Categories,
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts')

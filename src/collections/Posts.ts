@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 
 const Posts: CollectionConfig = {
+  labels: { singular: '投稿', plural: '投稿' },
   slug: 'posts',
   admin: {
     defaultColumns: ['title', 'author', 'category', 'tags', 'status'],
@@ -37,6 +38,11 @@ const Posts: CollectionConfig = {
     {
       name: 'content',
       type: 'richText'
+    },
+    {
+      name: 'displayImage',
+      type: 'upload',
+      relationTo: 'media',
     },
     {
       name: 'status',

@@ -1,7 +1,6 @@
 import {CollectionConfig} from "payload/types";
 
 const Media: CollectionConfig = {
-  labels: { singular: '画像', plural: '画像' },
   slug: 'media',
   access: {
     read: () => true,

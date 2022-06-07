@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 
 const Categories: CollectionConfig = {
+  labels: { singular: 'カテゴリー', plural: 'カテゴリー' },
   slug: 'categories',
   admin: {
     useAsTitle: 'name',

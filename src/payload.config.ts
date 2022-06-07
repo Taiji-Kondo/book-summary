@@ -7,7 +7,7 @@ import Media from './collections/Media';
 import Authors from "./collections/Authors";
 
 export default buildConfig({
-  serverURL: 'http://localhost:3000',
+  serverURL: 'http://localhost:3001',
   admin: {
     user: Users.slug,
   },

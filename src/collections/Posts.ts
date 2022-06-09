@@ -15,13 +15,9 @@ const Posts: CollectionConfig = {
       type: 'text',
     },
     {
-      name: 'author',
+      name: 'user',
       type: 'relationship',
       relationTo: 'users',
-    },
-    {
-      name: 'publishedDate',
-      type: 'date',
     },
     {
       name: 'author',
@@ -31,7 +27,8 @@ const Posts: CollectionConfig = {
     {
       name: 'category',
       type: 'relationship',
-      relationTo: 'categories'
+      relationTo: 'categories',
+      hasMany: true
     },
     {
       name: 'content',

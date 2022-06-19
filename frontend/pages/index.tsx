@@ -123,9 +123,7 @@ const Home: NextPage = () => {
                 <Avatar
                   size={"sm"}
                   bgColor={"gray.400"}
-                  name={
-                    typeof user === "string" ? user.at(0) : user?.name?.at(0)
-                  }
+                  name={typeof user === "string" ? user : user?.name}
                 />
               </Tooltip>
             </Grid>

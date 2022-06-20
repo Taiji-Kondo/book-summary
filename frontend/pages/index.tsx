@@ -103,6 +103,8 @@ const Home: NextPage = () => {
                             size={"sm"}
                             p={1}
                             fontWeight={"bold"}
+                            lineHeight={1.8}
+                            noOfLines={1}
                           >
                             {isString ? item : item.name}
                           </Tag>

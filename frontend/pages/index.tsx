@@ -1,11 +1,6 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import {
   Avatar,
-  Badge,
-  Box,
   Center,
   Container,
   Divider,
@@ -13,17 +8,12 @@ import {
   Heading,
   HStack,
   Tag,
-  Text,
   Tooltip,
   VStack,
+  chakra,
 } from "@chakra-ui/react";
-import {
-  Author,
-  Category,
-  Media,
-  Post,
-  User,
-} from "../generated/payload-types";
+import { Post } from "../generated/payload-types";
+import Link from "next/link";
 
 const DUMMY: Post[] = [
   {
@@ -89,44 +79,47 @@ const Home: NextPage = () => {
       <Container maxW={"1260px"} py={10} overflowX={"auto"}>
         <VStack align={"stretch"} spacing={3} divider={<Divider />}>
           {DUMMY.map(({ id, title, user, category }) => (
-            <Grid
-              as={"article"}
-              key={id}
-              style={{ gridTemplateColumns: "400px 1fr auto" }}
-              gap={3}
-              alignItems={"center"}
-            >
-              <Heading as={"h1"} fontSize={"md"} noOfLines={1}>
-                {title}
-              </Heading>
-              <HStack ml={"auto"} spacing={1}>
-                {category?.map((item) => {
-                  const isString = typeof item === "string";
-                  return (
-                    <Tooltip
-                      key={isString ? item : item.id}
-                      label={isString ? item : item.name}
-                    >
-                      <Tag
-                        colorScheme={"teal"}
-                        size={"sm"}
-                        p={1}
-                        fontWeight={"bold"}
-                      >
-                        {isString ? item : item.name}
-                      </Tag>
-                    </Tooltip>
-                  );
-                })}
-              </HStack>
-              <Tooltip label={typeof user === "string" ? user : user?.name}>
-                <Avatar
-                  size={"sm"}
-                  bgColor={"gray.400"}
-                  name={typeof user === "string" ? user : user?.name}
-                />
-              </Tooltip>
-            </Grid>
+            <Link href={`/books/${id}`} key={id}>
+              <chakra.a cursor={"pointer"}>
+                <Grid
+                  as={"article"}
+                  style={{ gridTemplateColumns: "400px 1fr auto" }}
+                  gap={3}
+                  alignItems={"center"}
+                >
+                  <Heading as={"h1"} fontSize={"md"} noOfLines={1}>
+                    {title}
+                  </Heading>
+                  <HStack ml={"auto"} spacing={1}>
+                    {category?.map((item) => {
+                      const isString = typeof item === "string";
+                      return (
+                        <Tooltip
+                          key={isString ? item : item.id}
+                          label={isString ? item : item.name}
+                        >
+                          <Tag
+                            colorScheme={"teal"}
+                            size={"sm"}
+                            p={1}
+                            fontWeight={"bold"}
+                          >
+                            {isString ? item : item.name}
+                          </Tag>
+                        </Tooltip>
+                      );
+                    })}
+                  </HStack>
+                  <Tooltip label={typeof user === "string" ? user : user?.name}>
+                    <Avatar
+                      size={"sm"}
+                      bgColor={"gray.400"}
+                      name={typeof user === "string" ? user : user?.name}
+                    />
+                  </Tooltip>
+                </Grid>
+              </chakra.a>
+            </Link>
           ))}
         </VStack>
       </Container>

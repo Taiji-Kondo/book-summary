@@ -83,7 +83,7 @@ const Home: NextPage = () => {
               <chakra.a cursor={"pointer"}>
                 <Grid
                   as={"article"}
-                  style={{ gridTemplateColumns: "400px 1fr auto" }}
+                  style={{ gridTemplateColumns: "50% 1fr auto" }}
                   gap={3}
                   alignItems={"center"}
                 >

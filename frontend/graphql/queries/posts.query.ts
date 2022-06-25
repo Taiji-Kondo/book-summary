@@ -9,15 +9,8 @@ export const postsQuery = gql`
         user {
           name
         }
-        author {
-          name
-        }
         category {
           name
-        }
-        content
-        displayImage {
-          url
         }
       }
     }

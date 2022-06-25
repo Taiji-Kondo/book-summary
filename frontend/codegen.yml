@@ -1,0 +1,11 @@
+schema: http://localhost:4000/api/graphql
+documents: ./graphql/documents/**/*.graphql
+generates:
+  ./generated/graphql.tsx:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typed-document-node
+  ./graphql.schema.json:
+    plugins:
+      - 'introspection'

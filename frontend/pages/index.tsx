@@ -11,9 +11,13 @@ import {
   Tooltip,
   VStack,
   chakra,
+  Spinner,
+  Text,
 } from "@chakra-ui/react";
 import { Post } from "../generated/payload-types";
 import Link from "next/link";
+import { useQuery } from "@apollo/client";
+import { PostsDocument, PostsQuery } from "../generated/graphql";
 
 const DUMMY: Post[] = [
   {
@@ -69,6 +73,18 @@ const DUMMY: Post[] = [
 ];
 
 const Home: NextPage = () => {
+  const { loading, error, data } = useQuery<PostsQuery>(PostsDocument);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <Text>データの取得に失敗しました</Text>;
+  }
+
+  console.log(data);
+
   return (
     <>
       <Center as={"header"} h={20} bgColor={"gray.200"}>
@@ -78,8 +94,8 @@ const Home: NextPage = () => {
       </Center>
       <Container maxW={"1260px"} py={10} overflowX={"auto"}>
         <VStack align={"stretch"} spacing={3} divider={<Divider />}>
-          {DUMMY.map(({ id, title, user, category }) => (
-            <Link href={`/books/${id}`} key={id}>
+          {data?.Posts?.docs?.map((post) => (
+            <Link href={`/books/${post?.id}`} key={post?.id}>
               <chakra.a cursor={"pointer"}>
                 <Grid
                   as={"article"}
@@ -88,16 +104,12 @@ const Home: NextPage = () => {
                   alignItems={"center"}
                 >
                   <Heading as={"h1"} fontSize={"md"} noOfLines={1}>
-                    {title}
+                    {post?.title}
                   </Heading>
                   <HStack ml={"auto"} spacing={1}>
-                    {category?.map((item) => {
-                      const isString = typeof item === "string";
+                    {post?.category?.map((item) => {
                       return (
-                        <Tooltip
-                          key={isString ? item : item.id}
-                          label={isString ? item : item.name}
-                        >
+                        <Tooltip key={item?.name} label={item?.name}>
                           <Tag
                             colorScheme={"teal"}
                             size={"sm"}
@@ -106,17 +118,17 @@ const Home: NextPage = () => {
                             lineHeight={1.8}
                             noOfLines={1}
                           >
-                            {isString ? item : item.name}
+                            {item?.name}
                           </Tag>
                         </Tooltip>
                       );
                     })}
                   </HStack>
-                  <Tooltip label={typeof user === "string" ? user : user?.name}>
+                  <Tooltip label={post?.user?.name}>
                     <Avatar
                       size={"sm"}
                       bgColor={"gray.400"}
-                      name={typeof user === "string" ? user : user?.name}
+                      name={post?.user?.name ?? ""}
                     />
                   </Tooltip>
                 </Grid>

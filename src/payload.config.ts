@@ -7,7 +7,7 @@ import Media from "./collections/Media";
 import Authors from "./collections/Authors";
 
 export default buildConfig({
-  serverURL: "http://localhost:3001",
+  serverURL: "http://localhost:4000",
   admin: {
     user: Users.slug,
   },
@@ -18,4 +18,5 @@ export default buildConfig({
       "../frontend/generated/payload-types.ts"
     ),
   },
+  cors: ["http://localhost:3000"],
 });

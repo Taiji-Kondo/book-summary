@@ -14,63 +14,9 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import { Post } from "../generated/payload-types";
 import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import { PostsDocument, PostsQuery } from "../generated/graphql";
-
-const DUMMY: Post[] = [
-  {
-    id: "1",
-    title: "dummy1",
-    user: "Admin User",
-    author: "dummy author1",
-    category: [
-      {
-        id: "1",
-        name: "dummy category1",
-      },
-      {
-        id: "2",
-        name: "dummy category2",
-      },
-    ],
-    content: [
-      {
-        text: "dummy",
-      },
-    ],
-    displayImage: {
-      id: "1",
-      url: "dummy1.png",
-    },
-  },
-  {
-    id: "2",
-    title: "long dummy2 long dummy2 long dummy2 long dummy2",
-    user: "Long Name User Long Name User",
-    author: "dummy author2",
-    category: [
-      {
-        id: "1",
-        name: "long dummy category long dummy category long dummy category",
-      },
-      {
-        id: "2",
-        name: "long dummy category long dummy category long dummy category",
-      },
-    ],
-    content: [
-      {
-        text: "dummy",
-      },
-    ],
-    displayImage: {
-      id: "2",
-      url: "dummy2.png",
-    },
-  },
-];
 
 const Home: NextPage = () => {
   const { loading, error, data } = useQuery<PostsQuery>(PostsDocument);

@@ -1,0 +1,14 @@
+query Posts {
+  Posts {
+    docs {
+      id
+      title
+      user {
+        name
+      }
+      category {
+        name
+      }
+    }
+  }
+}
